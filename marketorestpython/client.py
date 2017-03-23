@@ -1477,7 +1477,7 @@ class MarketoClient:
         if not result['success'] : raise MarketoException(result['errors'][0])
         return result['result']
 
-    def update_email(self, id, name=None, description=None):
+    def update_email(self, id, name=None, description=None, operational=None, published=None, textOnly=None, webView=None):
         self.authenticate()
         if id is None: raise ValueError("Invalid argument: required argument id is none.")
         args = {
@@ -1487,6 +1487,14 @@ class MarketoClient:
             args['name'] = name
         if description is not None:
             args['description'] = description
+        if operational is not None:
+            args['operational'] = operational
+        if published is not None:
+            args['published'] = published
+        if textOnly is not None:
+            args['textOnly'] = textOnly
+        if webView is not None:
+            args['webView'] = webView
         result = self._api_call('post', self.host + "/rest/asset/v1/email/" + str(id) + ".json", args)
         if result is None: raise Exception("Empty Response")
         if not result['success'] : raise MarketoException(result['errors'][0])
