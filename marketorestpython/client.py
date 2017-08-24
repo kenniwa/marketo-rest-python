@@ -774,7 +774,7 @@ class MarketoClient:
         return result
 
     def get_lead_activities(self, activityTypeIds, nextPageToken=None, sinceDatetime=None, untilDatetime=None,
-                            batchSize = None, listId = None, leadIds=None):
+                            batchSize = None, listId = None, leadIds=None, assetIds=None):
         self.authenticate()
         if activityTypeIds is None: raise ValueError("Invalid argument: required argument activityTypeIds is none.")
         if nextPageToken is None and sinceDatetime is None: raise ValueError("Either nextPageToken or sinceDatetime needs to be specified.")
@@ -787,6 +787,8 @@ class MarketoClient:
             args['listId'] = listId
         if leadIds is not None:
             args['leadIds'] = leadIds
+        if assetIds is not None:
+            args['assetIds'] = assetIds
         if batchSize is not None:
             args['batchSize'] = batchSize
         if nextPageToken is None:
@@ -811,7 +813,7 @@ class MarketoClient:
         return result_list
 
     def get_lead_activities_yield(self, activityTypeIds, nextPageToken=None, sinceDatetime=None, untilDatetime=None,
-                            batchSize=None, listId=None, leadIds=None):
+                            batchSize=None, listId=None, leadIds=None, assetIds=None):
         self.authenticate()
         if activityTypeIds is None: raise ValueError("Invalid argument: required argument activityTypeIds is none.")
         if nextPageToken is None and sinceDatetime is None: raise ValueError(
@@ -825,6 +827,8 @@ class MarketoClient:
             args['listId'] = listId
         if leadIds is not None:
             args['leadIds'] = leadIds
+        if assetIds is not None:
+            args['assetIds'] = assetIds
         if batchSize is not None:
             args['batchSize'] = batchSize
         if nextPageToken is None:
